@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import projectsData from "./data.json"; 
 
 const Gallery = React.forwardRef((props, ref) => {
@@ -33,7 +32,7 @@ const Gallery = React.forwardRef((props, ref) => {
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-7"
               fill="none"
-              viewBox="0 0 24 24"
+              viewBox="0 0 26 26"
               stroke="currentColor"
             >
               <path
@@ -59,9 +58,9 @@ const Gallery = React.forwardRef((props, ref) => {
                 .map((project, index) => (
                   <motion.div
                     key={index}
-                    className="w-[300px] h-[350px] bg-gradient-to-r from-pink-400 to-blue-300 
+                    className="w-[300px] h-[380px] bg-gradient-to-r from-blue-300 via-pink-500 to-purple-400 hover:from-blue-400 hover:via-purple-500 hover:to-yellow-500
                     hover:shadow-lg transition duration-300 rounded-t-[40px] shadow-md mx-5"
-                    whileHover={{
+                   whileHover={{
                       scale: 1.1, 
                       zIndex: 1, 
                       transition: { duration: 0.5 }, 
@@ -112,6 +111,17 @@ const Gallery = React.forwardRef((props, ref) => {
             </svg>
           </button>
         </div>
+        <div className="flex justify-center mt-8">
+          <a
+            href="https://enactus-mnnit.netlify.app/gallery"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-600 hover:from-pink-500 hover:via-red-500 hover:to-yellow-500 text-white font-bold py-2 px-6 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-110"
+            >
+            More Pictures
+          </a>
+        </div>
+        <br></br>
       </motion.div>
     </div>
   );
