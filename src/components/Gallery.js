@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import projectsData from "./data.json"; // Importing the data.json file
+import projectsData from "./data.json"; 
 
 const Gallery = React.forwardRef((props, ref) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -26,7 +26,8 @@ const Gallery = React.forwardRef((props, ref) => {
         <div className="flex justify-center relative">
           <button
             onClick={prevPage}
-            className="bg-transparent hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-full absolute left-0 top-1/2 transform -translate-y-1/2 z-10"
+            className="bg-transparent hover:bg-gray-200 text-gray-800 
+            font-bold py-2 px-4 rounded-full absolute left-0 top-1/2 transform -translate-y-1/2 z-10"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -58,11 +59,12 @@ const Gallery = React.forwardRef((props, ref) => {
                 .map((project, index) => (
                   <motion.div
                     key={index}
-                    className="w-[300px] h-[350px] bg-gradient-to-r from-pink-400 to-blue-300 hover:shadow-lg transition duration-300 rounded-t-[40px] shadow-md mx-5"
+                    className="w-[300px] h-[350px] bg-gradient-to-r from-pink-400 to-blue-300 
+                    hover:shadow-lg transition duration-300 rounded-t-[40px] shadow-md mx-5"
                     whileHover={{
-                      scale: 1.1, // Slight scaling effect
-                      zIndex: 1, // Moves the image to the top
-                      transition: { duration: 0.5 }, // Smooth transition
+                      scale: 1.1, 
+                      zIndex: 1, 
+                      transition: { duration: 0.5 }, 
                     }}
                   >
                     <div className="relative">
@@ -71,7 +73,6 @@ const Gallery = React.forwardRef((props, ref) => {
                         alt={project.name}
                         className="w-full h-[270px] object-cover rounded-t-[40px]"
                       />
-                      {/* Name sliding effect on hover */}
                       <motion.div
                         className="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 p-5"
                         initial={{ y: 50, opacity: 0 }}
@@ -92,7 +93,8 @@ const Gallery = React.forwardRef((props, ref) => {
           </div>
           <button
             onClick={nextPage}
-            className="bg-transparent hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-full absolute right-0 top-1/2 transform -translate-y-1/2 z-10"
+            className="bg-transparent hover:bg-gray-200 text-gray-800 
+            font-bold py-2 px-4 rounded-full absolute right-0 top-1/2 transform -translate-y-1/2 z-10"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
