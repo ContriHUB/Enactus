@@ -1,10 +1,10 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import projectsData from "./data.json"; // Importing the data.json file
 
-const Gallery = React.forwardRef((props, ref) => {
+const TiltedGallery = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const imagesPerPage = 10;
+  const imagesPerPage = 7; // Maximum images to display per page
 
   const totalPages = Math.ceil(projectsData.projects.length / imagesPerPage);
 
@@ -17,69 +17,60 @@ const Gallery = React.forwardRef((props, ref) => {
   };
 
   return (
-    <div ref={ref} className="w-screen bg-gray-100 py-10" id="gallery">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeInOut" }}
-      >
-        <div className="flex items-center justify-center h-[150px]">
-          <h1 className="text-7xl bebas mt-10 mb-10 text-gray-800">Gallery</h1>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 px-10">
+    <div className="w-screen overflow-hidden flex flex-col items-center bg-gray-100" id="gallery">
+      <h1 className="text-4xl text-center md:text-7xl bebas mt-5 text-gray-800">GALLERY</h1>
+      <div className="relative overflow-hidden w-full h-[600px]">
+        <div className="absolute w-full h-full">
           {projectsData.projects
-            .slice(
-              currentPage * imagesPerPage,
-              (currentPage + 1) * imagesPerPage
-            )
+            .slice(currentPage * imagesPerPage, (currentPage + 1) * imagesPerPage)
             .map((project, index) => (
-              <motion.div
+              <div
                 key={index}
-                className="group cursor-pointer relative shadow-lg hover:shadow-2xl rounded-lg overflow-hidden transition-shadow duration-500"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className={`absolute transition-all duration-500 hover:z-100 rounded-lg ${
+                  index === 0
+                    ? "w-[39rem] h-[22rem] border-4 border-gray-300 rotate-[-45deg] z-40 top-[-7rem] left-[-8rem]"
+                    : index === 1
+                    ? "w-[64rem] h-[30rem] border-4 border-gray-300 rotate-[-50deg] z-30 top-0 left-[-2rem]"
+                    : index === 2
+                    ? "w-[40rem] h-[30rem] border-4 border-gray-300 rotate-[35deg] z-50 bottom-[-17rem] left-[-15rem]"
+                    : index === 3
+                    ? "w-[55rem] h-[35rem] border-4 border-gray-300 rotate-[40deg] z-20 bottom-[-15rem] left-[17rem]"
+                    : index === 4
+                    ? "w-[66rem] h-[39rem] border-4 border-gray-300 rotate-[-55deg] z-10 bottom-[4.5rem] left-[30rem]"
+                    : index === 5
+                    ? "w-[55rem] h-[35rem] border-4 border-gray-300 rotate-[40deg] z-[5] -bottom-[15rem] left-[64rem]"
+                    : "w-[55rem] h-[35rem] border-4 border-gray-300 rotate-[24deg] z-3 bottom-[6.9rem] left-[84rem]"
+                }`}
               >
                 <img
                   src={project.image}
                   alt={project.name}
-                  className="w-full h-72 object-cover transition-transform transform scale-100 group-hover:scale-110 duration-500 shadow-md"
+                  className={`w-full h-full object-cover rounded-lg shadow-lg transition-transform duration-500 hover:scale-110 hover:shadow-2xl`}
                 />
-
-                <div className="absolute inset-0 justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 bg-black bg-opacity-50">
-                  <h3 className="absolute bottom-6 left-[-300px] group-hover:translate-x-[320px] transition-all duration-500 text-neutral-300 font-semibold text-2xl">
-                    {project.name}
-                  </h3>
-                </div>
-              </motion.div>
+              </div>
             ))}
         </div>
-
-        <div className="flex p-5 justify-center mt-8 space-x-8">
-          {currentPage > 0 && (
-            <motion.button
-              onClick={prevPage}
-              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-110 shadow-lg"
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-              Previous
-            </motion.button>
-          )}
-          {currentPage < totalPages - 1 && (
-            <motion.button
-              onClick={nextPage}
-              className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-110 shadow-lg"
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-              Next
-            </motion.button>
-          )}
-        </div>
-      </motion.div>
+      </div>
+      <div className="mt-4 flex justify-center gap-4 w-full max-w-lg">
+        {currentPage > 0 && (
+          <button
+            onClick={prevPage}
+            className="bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-l hover:bg-gray-400 transition duration-300"
+          >
+            Previous
+          </button>
+        )}
+        {currentPage < totalPages - 1 && (
+          <button
+            onClick={nextPage}
+            className="bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-r hover:bg-gray-400 transition duration-300"
+          >
+            Next
+          </button>
+        )}
+      </div>
     </div>
   );
-});
+};
 
-export default Gallery;
+export default TiltedGallery;
