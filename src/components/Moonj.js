@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 
 const Moonj = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const navigate = useNavigate();
+
   const images = [
     "https://enactus-mnnit.netlify.app/img/enactus/moonj/moonj%20(2).jpg",
     "https://enactus-mnnit.netlify.app/img/enactus/moonj/moonj%20(3).jpg",
@@ -15,9 +18,19 @@ const Moonj = () => {
 
     return () => clearInterval(interval);
   }, []); // Run once on component mount
+  const handleBackClick = () => {
+    navigate(-1); 
+  };
 
   return (
     <div className="container mx-auto px-8 py-12 mt-7">
+            {/* Back Button */}
+            <button
+        onClick={handleBackClick}
+        className="absolute  top-20 left-3 bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      >
+        ← Back
+      </button>
     <div className="flex flex-col mt-5 lg:flex-row gap-8">
       <div className="container mx-auto pl-12 lg:w-1/2">
         <h1 className="text-4xl bebas font-bold mb-8">About Project Moonj</h1>
